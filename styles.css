@@ -1,0 +1,19 @@
+
+
+
+
+
+
+.box{
+    display: grid;
+    grid-template: repeat(3, 100px) / repeat(3, 100px);
+    justify-content: center;
+}
+
+
+
+button{
+    width: 100px;
+    height: 100px;
+    font-size: 48px;
+}
