@@ -1,23 +1,32 @@
-const gameBoard = (function (){
-const p1Wins = "Player 1 Wins"
+/*const btn = document.querySelectorAll("button")
+
+window.addEventListener("click", (event) => {
+    gameBoard.click() 
+    for(const obj in btn){
+   if (btn[obj].id === event.target.id){
+     btn[obj].innerText = gameBoard.click().tile
+  }}})    
+const div = document.querySelector("h2")*/
+const gameBoard = (function (){ 
+const p1Wins = "Player 1 Wins"  
 const p2Wins = "Player 2 Wins"
-let tileX = "X"
-let tileO = "O"
+let tile = ""
 let currentPlayer = "p1"
 let p1Tiles = []
 let p2Tiles = []
 
-
 const player1 = () =>{
 let score = 0
 let msg = "Player 2's turn"
-return {tileX, score, msg}
+tile = "X"
+return {tile, score, msg}
 }
 
 const player2 = () =>{
     let score = 0
     let msg = "Player 1's turn"
-    return {tileO, score, msg}
+    tile = "O"
+    return {tile, score, msg}
     }
 
 const click = (num) =>{
@@ -41,14 +50,22 @@ const outcomes = {
     five: [2,5,8],
     six: [3,6,9],
     seven: [1,5,9],
-    eight: [3,5,7]
+    eight: [3,5,7],
    }
 
 const winner = () =>{
+    for(const obj in outcomes){
+if(outcomes[obj].every((num) => p1Tiles.includes(num))){
+     console.log(p1Wins)
+}else if(outcomes[obj].every((num) => p2Tiles.includes(num))){
+    console.log(p2Wins)
+    }else if (p1Tiles.length === 5){
+        console.log("It's a Draw!")
+    }else{
+        return ""
+    }}}
 
-}
-
-return{player1, player2, click}
+return{click, winner}
 })()
 
 const displayController = (function () {
@@ -57,5 +74,20 @@ const displayController = (function () {
 
 })()
 
-console.log(gameBoard.click())
+
+
+
+
+console.log(gameBoard.click(1), gameBoard.winner())
+console.log(gameBoard.click(5), gameBoard.winner())
+console.log(gameBoard.click(2), gameBoard.winner())
+console.log(gameBoard.click(9), gameBoard.winner())
+console.log(gameBoard.click(3), gameBoard.winner())
+
+
+
+
+
+
+
 
