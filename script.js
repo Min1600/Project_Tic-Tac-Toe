@@ -12,8 +12,8 @@ window.addEventListener("click", (event) => {
 const gameBoard = (function (){  
 
 const declare = document.querySelector(".declare")
-const p1Wins = "Player 1 Wins"  
-const p2Wins = "Player 2 Wins" 
+const p1Wins = "Player 1 Wins!"  
+const p2Wins = "Player 2 Wins!" 
 let tile = ""
 let currentPlayer = "p1" 
 let p1Tiles = []
