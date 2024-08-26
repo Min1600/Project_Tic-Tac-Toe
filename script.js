@@ -1,16 +1,9 @@
-const btn = document.querySelectorAll(".game")
-const resetBtn = document.querySelector(".reset")
 
-window.addEventListener("click", (event) => { 
-    for(const obj in btn){
-   if (btn[obj].id === event.target.id){
-    btn[obj].disabled = true;
-     btn[obj].innerText = gameBoard.click(event.target.id).tile, 
-     gameBoard.winner()
-  }}})   
  
 const gameBoard = (function (){  
 
+const btn = document.querySelectorAll(".game")
+const resetBtn = document.querySelector(".reset")
 const declare = document.querySelector(".declare")
 const p1Wins = "Player 1 Wins!"  
 const p2Wins = "Player 2 Wins!" 
@@ -20,6 +13,7 @@ let p1Tiles = []
 let p2Tiles = []
 let msg = "Player 2's Turn"
 
+//Determines symbols and message of player
 const player1 = () =>{
 let score = 0
  msg = "Player 1's Turn"
@@ -34,6 +28,7 @@ const player2 = () =>{
     return {tile, score, msg}
     }
 
+//Display symbols and player turn
 const click = (event) =>{
 if(currentPlayer === "p1"){
     currentPlayer = currentPlayer === "p1" ? "p2": "p1"
@@ -47,6 +42,7 @@ declare.innerText = msg
 return player2()
 }
 
+//Winning combinations
 const outcomes = {
     one: [1,2,3],
     two: [4,5,6],
@@ -58,6 +54,7 @@ const outcomes = {
     eight: [3,5,7],
    }  
 
+//declare winner and disable buttons
 const winner = () =>{
     for(const obj in outcomes){
     if(outcomes[obj].every((num) => p1Tiles.includes(num))){
@@ -71,6 +68,7 @@ const winner = () =>{
         return declare.innerText = "It's a Draw!" 
     }}
 
+    //reset game
     const reset =  () => {
         tile = ""
         currentPlayer = "p1" 
@@ -82,7 +80,18 @@ const winner = () =>{
       btn.forEach((item) => item.disabled = false)
     }
 
+
+window.addEventListener("click", (event) => { 
+    for(const obj in btn){
+   if (btn[obj].id === event.target.id){
+    btn[obj].disabled = true;
+     btn[obj].innerText = gameBoard.click(event.target.id).tile, 
+     gameBoard.winner()
+  }}})   
+
+resetBtn.addEventListener("click", () => gameBoard.reset())
+
 return{click, winner, msg, reset} 
 })() 
 
-resetBtn.addEventListener("click", () => gameBoard.reset())
+
